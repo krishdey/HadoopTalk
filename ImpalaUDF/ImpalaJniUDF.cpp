@@ -24,20 +24,18 @@ string invoke_method(FunctionContext* ctx, const char* text, const char* element
 {
     //Add logging TODO 
     JNIEnv* env = getJNIEnv();
-   
-    jclass impala_voltage_class;
-    jmethodID access_method;
-
+    
     jstring jstrBuf1 = (jstring)env->NewStringUTF(text); 
     jstring jstrBuf2 = (jstring)env->NewStringUTF(element); 
     jstring usrBuf3  = (jstring)env->NewStringUTF(user); 
    
-    impala_voltage_class = (env->FindClass("com/krish/securedata/hadoop/impala/ImpalaSecureUDF"));
-    if(impala_voltage_class == NULL){
-      ctx->SetError("voltage class is null\n");
-      throw ("JNI ImpalaVoltageUDF class not found");    
+    jclass impala_jni_class = (env->FindClass("com/krish/securedata/hadoop/impala/krishUtil"));
+    if(impala_jni_class == NULL){
+      ctx->SetError("java class is null\n");
+      throw ("JNI ImpalaJni JAVA class not found");    
     } 
-    access_method = env->GetStaticMethodID(impala_voltage_class, "accessData",\
+    
+    jmethodID access_method = env->GetStaticMethodID(impala_voltage_class, "accessData",\
      "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;");
     
     if(access_method == NULL){
