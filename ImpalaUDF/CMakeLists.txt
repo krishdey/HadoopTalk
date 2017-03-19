@@ -1,6 +1,6 @@
 # @author krishdey
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.2.3)
 
 # where to put generated libraries
 set(LIBRARY_OUTPUT_PATH "build")
