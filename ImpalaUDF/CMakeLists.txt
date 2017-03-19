@@ -39,9 +39,9 @@ endfunction(COMPILE_TO_IR)
 
 # Build the UDA/UDFs into a shared library.  You can have multiple UDFs per
 # file, and/or specify multiple files here.
-add_library(impalavoltageudf SHARED ImpalaVoltageUDF.cpp)
+add_library(impalajniudf SHARED ImpalaJniUDF.cpp)
 
 # The resulting LLVM IR module will have the same name as the .cc file
 if (CLANG_EXECUTABLE)
-  COMPILE_TO_IR(ImpalaVoltageUDF.cpp)
+  COMPILE_TO_IR(ImpalaJniUDF.cpp)
 endif(CLANG_EXECUTABLE)
